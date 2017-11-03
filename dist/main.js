@@ -76,12 +76,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 document.addEventListener("DOMContentLoaded", () => {
   const listRoot = document.getElementById("container").querySelector(".list");
-  Object(__WEBPACK_IMPORTED_MODULE_0__api__["a" /* getMovies */])('https://api.zype.com/videos/?api_key=H7CF2IHbEc6QIrMVwb2zfd9VI14HHGAfYax1eHEUsJ4voYuqWF2oWvByUOhERva_')
-  .then(data => {
+  Object(__WEBPACK_IMPORTED_MODULE_0__api__["a" /* getMovies */])('https://api.zype.com/videos/?api_key=H7CF2IHbEc6QIrMVwb2zfd9VI14HHGAfYax1eHEUsJ4voYuqWF2oWvByUOhERva_').then(data => {
     loadContent(listRoot, data);
     console.log(data);
-  })
-  .catch(err => {
+  }).catch(err => {
     console.error('Error:', err.statusText);
   });
 });
@@ -89,18 +87,15 @@ document.addEventListener("DOMContentLoaded", () => {
 function loadContent(listRoot, data) {
   // create a new parallaxObject for each data item
   let parallaxObjects = [];
-  // kind of cheating here but the very first thumnail is 404 :(
   data.forEach(datum => {
-    const parallaxObject = new __WEBPACK_IMPORTED_MODULE_1__parallaxObject__["a" /* default */]({
-      listRoot: listRoot,
-      data: datum
-    });
+    const parallaxObject = new __WEBPACK_IMPORTED_MODULE_1__parallaxObject__["a" /* default */]({listRoot: listRoot, data: datum});
     parallaxObjects.push(parallaxObject);
     listRoot.appendChild(parallaxObject.listItem);
   });
 
   listRoot.addEventListener('scroll', () => {
     window.requestAnimationFrame(() => {
+      // only call this function when the window is ready to render; improves speed
       parallaxObjects.forEach(obj => {
         let rect = obj.listItem.getBoundingClientRect();
         obj.animate(rect);

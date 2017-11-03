@@ -39,6 +39,7 @@ img {
 
 .list {
   overflow-y: scroll;
+  /* enable scrolling momentum on a fixed element */
   -webkit-overflow-scrolling: touch;
   height: 100%;
   width: 100%;
