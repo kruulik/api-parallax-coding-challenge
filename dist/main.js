@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function loadContent(listRoot, data) {
   // create a new parallaxObject for each data item
   let parallaxObjects = [];
-  data.forEach(datum => {
+  data.slice(1).forEach(datum => {
     const parallaxObject = new __WEBPACK_IMPORTED_MODULE_1__parallaxObject__["a" /* default */]({listRoot: listRoot, data: datum});
     parallaxObjects.push(parallaxObject);
     listRoot.appendChild(parallaxObject.listItem);
